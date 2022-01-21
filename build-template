@@ -1,0 +1,16 @@
+# 注释行(使用方式) - 建议使用搜索替换进行局部内容初始化定制
+# find_package(BaseBuild PATHS ${CMAKE_SOURCE_DIR})
+# project(${BASE_NAME} LANGUAGES ${BASE_PROGRAMME} VERSION ${BASE_VERSION})
+#
+# base_feature_init(FEATURES ./build-template)
+# ${FEATURES_INCLUDE_DIRS}
+# ${FEATURES_LIBRARIES}
+
+# 非注释行可写入相对构建目录路径，cmake 将会自动化处理(深度不应大于2 这是一个bug)
+# 此配置文件应使用 build_feature，或 base_feature_init, base_test_init 等进行引用
+
+# Your features:
+
+NetworkRequest
+QtPrivateDeclar
+QuickTemplateObject
