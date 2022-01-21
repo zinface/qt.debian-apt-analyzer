@@ -1,0 +1,290 @@
+[
+    {
+        "url": "https://community-packages.deepin.com/",
+        "dist": "deepin",
+        "codename": "apricot",
+        "release_url": "https://community-packages.deepin.com/deepin/dists/apricot/Release",
+        "relese": {
+            "origin": "Linux Deepin",
+            "label": "Deepin",
+            "codename": "apricot",
+            "version": "2019",
+            "date": "Tue, 18 Jan 2022 09:36:49 UTC",
+            "architectures": "i386 amd64 arm64 mips64el",
+            "components": "main contrib non-free",
+            "description": "Deepin debian packages"
+        }
+    },
+    {
+        "url": "http://archive.kylinos.cn/kylin/",
+        "dist": "KYLIN-ALL",
+        "codename": "4.0.2-desktop",
+        "release_url": "http://archive.kylinos.cn/kylin/KYLIN-ALL/dists/4.0.2-desktop/Release",
+        "relese": {
+            "origin": "Kylin",
+            "label": "\u94f6\u6cb3\u9e92\u9e9f\u684c\u9762\u7248\u672cv4",
+            "codename": "juniper",
+            "version": "4.0.2",
+            "date": "Thu, 16 Sep 2021 01:59:55 +0000",
+            "architectures": "arm64 i386 armhf amd64",
+            "components": "restricted main multiverse universe",
+            "description": "\u94f6\u6cb3\u9e92\u9e9f\u684c\u9762\u7248\u672cv4 Desktop Juniper Updates"
+        }
+    },
+    {
+        "url": "http://archive.kylinos.cn/kylin/",
+        "dist": "KYLIN-ALL",
+        "codename": "4.0.2sp1-desktop",
+        "release_url": "http://archive.kylinos.cn/kylin/KYLIN-ALL/dists/4.0.2sp1-desktop/Release",
+        "relese": {
+            "origin": "Kylin",
+            "label": "Kylin Desktop v4",
+            "codename": "juniper.sp1",
+            "version": "4.0.2-sp1",
+            "date": "Thu, 16 Sep 2021 02:52:34 +0000",
+            "architectures": "arm64 i386 armhf amd64",
+            "components": "restricted main multiverse universe",
+            "description": "Kylin Desktop v4 Desktop Juniper sp1 Updates"
+        }
+    },
+    {
+        "url": "http://archive.kylinos.cn/kylin/",
+        "dist": "KYLIN-ALL",
+        "codename": "4.0.2sp2-desktop",
+        "release_url": "http://archive.kylinos.cn/kylin/KYLIN-ALL/dists/4.0.2sp2-desktop/Release",
+        "relese": {
+            "origin": "Kylin",
+            "label": "Kylin Desktop v4",
+            "codename": "juniper.sp2",
+            "version": "4.0.2-sp2",
+            "date": "Thu, 16 Sep 2021 02:28:11 +0000",
+            "architectures": "arm64 i386 armhf amd64",
+            "components": "restricted main multiverse universe",
+            "description": "Kylin Desktop v4 Desktop Juniper sp2 Updates"
+        }
+    },
+    {
+        "url": "http://archive.kylinos.cn/kylin/",
+        "dist": "KYLIN-ALL",
+        "codename": "4.0.2-server",
+        "release_url": "http://archive.kylinos.cn/kylin/KYLIN-ALL/dists/4.0.2-server/Release",
+        "relese": {
+            "origin": "Kylin",
+            "label": "Kylin Server v4",
+            "codename": "juniper",
+            "version": "4.0.2",
+            "date": "Thu, 16 Sep 2021 02:00:57 +0000",
+            "architectures": "arm64 i386 armhf amd64",
+            "components": "restricted main multiverse universe",
+            "description": "Kylin Server v4 Server Juniper Updates"
+        }
+    },
+    {
+        "url": "http://archive.kylinos.cn/kylin/",
+        "dist": "KYLIN-ALL",
+        "codename": "4.0.2sp1-server",
+        "release_url": "http://archive.kylinos.cn/kylin/KYLIN-ALL/dists/4.0.2sp1-server/Release",
+        "relese": {
+            "origin": "Kylin",
+            "label": "Kylin Server v4",
+            "codename": "juniper.sp1",
+            "version": "4.0.2-sp1",
+            "date": "Thu, 16 Sep 2021 02:54:37 +0000",
+            "architectures": "arm64 i386 armhf amd64",
+            "components": "restricted main multiverse universe",
+            "description": "Kylin Server v4 Server Juniper sp1 Updates"
+        }
+    },
+    {
+        "url": "http://archive.kylinos.cn/kylin/",
+        "dist": "KYLIN-ALL",
+        "codename": "4.0.2sp2-server",
+        "release_url": "http://archive.kylinos.cn/kylin/KYLIN-ALL/dists/4.0.2sp2-server/Release",
+        "relese": {
+            "origin": "Kylin",
+            "label": "Kylin Server v4",
+            "codename": "juniper.sp2",
+            "version": "4.0.2-sp2",
+            "date": "Thu, 16 Sep 2021 01:37:03 +0000",
+            "architectures": "arm64 i386 armhf amd64",
+            "components": "restricted main multiverse universe",
+            "description": "Kylin Server v4 Server Juniper sp2 Updates"
+        }
+    },
+    {
+        "url": "http://archive.kylinos.cn/kylin/",
+        "dist": "KYLIN-ALL",
+        "codename": "4.0.2sp2-server-ft2000",
+        "release_url": "http://archive.kylinos.cn/kylin/KYLIN-ALL/dists/4.0.2sp2-server-ft2000/Release",
+        "relese": {
+            "origin": "Kylin",
+            "label": "2000-201811",
+            "codename": "juniper",
+            "version": "4.0-2",
+            "date": "Thu, 16 Sep 2021 03:38:52 +0000",
+            "architectures": "arm64",
+            "components": "restricted main multiverse universe",
+            "description": "Kylin-V4 Kylin Juniper 4.0-2"
+        }
+    },
+    {
+        "url": "http://archive.kylinos.cn/kylin/",
+        "dist": "KYLIN-ALL",
+        "codename": "4.0.2sp3-desktop",
+        "release_url": "http://archive.kylinos.cn/kylin/KYLIN-ALL/dists/4.0.2sp3-desktop/Release",
+        "relese": {
+            "origin": "Kylin",
+            "label": "dput",
+            "codename": "juniper",
+            "version": "4.0-2",
+            "date": "Thu, 16 Sep 2021 02:29:45 +0000",
+            "architectures": "arm64 i386 armhf amd64",
+            "components": "restricted main multiverse universe",
+            "description": "Kylin-V4 Kylin Juniper 4.0-2"
+        }
+    },
+    {
+        "url": "http://archive.kylinos.cn/kylin/",
+        "dist": "KYLIN-ALL",
+        "codename": "4.0.2sp3-server",
+        "release_url": "http://archive.kylinos.cn/kylin/KYLIN-ALL/dists/4.0.2sp3-server/Release",
+        "relese": {
+            "origin": "Kylin",
+            "label": "\u94f6\u6cb3\u9e92\u9e9f\u670d\u52a1\u5668\u7248\u672cv4",
+            "codename": "juniper.sp3",
+            "version": "4.0.2-sp3",
+            "date": "Thu, 16 Sep 2021 03:38:17 +0000",
+            "architectures": "arm64 i386 mips64el amd64 armhf",
+            "components": "restricted main multiverse universe",
+            "description": "\u94f6\u6cb3\u9e92\u9e9f\u670d\u52a1\u5668\u7248\u672cv4 Server Juniper sp3 Updates"
+        }
+    },
+    {
+        "url": "http://archive.kylinos.cn/kylin/",
+        "dist": "KYLIN-ALL",
+        "codename": "4.0.2sp4",
+        "release_url": "http://archive.kylinos.cn/kylin/KYLIN-ALL/dists/4.0.2sp4/Release",
+        "relese": {
+            "origin": "Kylin",
+            "label": "Kylin Desktop v4",
+            "codename": "juniper.sp4",
+            "version": "4.0.2-sp4",
+            "date": "Tue, 12 Oct 2021 09:05:52 +0000",
+            "architectures": "arm64 i386 mips64el armhf amd64",
+            "components": "restricted main multiverse universe",
+            "description": "Kylin Desktop v4 juniper.sp4 Security"
+        }
+    },
+    {
+        "url": "http://archive.kylinos.cn/kylin/",
+        "dist": "KYLIN-ALL",
+        "codename": "10.0",
+        "release_url": "http://archive.kylinos.cn/kylin/KYLIN-ALL/dists/10.0/Release",
+        "relese": {
+            "origin": "Kylin",
+            "label": "Kylin-V4",
+            "codename": "properties",
+            "version": "1.0",
+            "date": "Wed, 01 Dec 2021 02:09:19 +0000",
+            "architectures": "arm64 i386 mips64el armhf amd64",
+            "components": "non-free universe contrib restricted main multiverse",
+            "description": "None"
+        }
+    },
+    {
+        "url": "http://archive.kylinos.cn/kylin/",
+        "dist": "KYLIN-ALL",
+        "codename": "10.1",
+        "release_url": "http://archive.kylinos.cn/kylin/KYLIN-ALL/dists/10.1/Release",
+        "relese": {
+            "origin": "Kylin",
+            "label": "100-years",
+            "codename": "v101",
+            "version": "10.1",
+            "date": "Fri, 31 Dec 2021 15:11:56 +0000",
+            "architectures": "i386 mips64el amd64 loongarch64 arm64 armhf",
+            "components": "restricted main multiverse universe",
+            "description": "Kylin Desktop 10.1 Desktop V10.1 10.1"
+        }
+    },
+    {
+        "url": "https://proposed-packages.deepin.com/",
+        "dist": "dde-nightly",
+        "codename": "bullseye",
+        "release_url": "https://proposed-packages.deepin.com/dde-nightly/dists/bullseye/Release",
+        "relese": {
+            "origin": "Deepin",
+            "label": "bullseye",
+            "codename": "bullseye",
+            "version": "",
+            "date": "Tue, 21 Dec 2021 14:35:24 UTC",
+            "architectures": "i386 amd64 arm64 mips64el",
+            "components": "main non-free contrib",
+            "description": "Deepin experimental Repository"
+        }
+    },
+    {
+        "url": "https://proposed-packages.deepin.com/",
+        "dist": "dde-nightly",
+        "codename": "deepin-bullseye",
+        "release_url": "https://proposed-packages.deepin.com/dde-nightly/dists/deepin-bullseye/Release",
+        "relese": {
+            "origin": "Deepin",
+            "label": "deepin-bullseye",
+            "codename": "deepin-bullseye",
+            "version": "",
+            "date": "Wed, 22 Dec 2021 01:38:00 UTC",
+            "architectures": "i386 amd64 mips64el arm64",
+            "components": "main non-free contrib",
+            "description": "Deepin experimental Repository"
+        }
+    },
+    {
+        "url": "https://proposed-packages.deepin.com/",
+        "dist": "dde-nightly",
+        "codename": "dde-bullseye",
+        "release_url": "https://proposed-packages.deepin.com/dde-nightly/dists/dde-bullseye/Release",
+        "relese": {
+            "origin": "Deepin",
+            "label": "dde-bullseye",
+            "codename": "dde-bullseye",
+            "version": "",
+            "date": "Wed, 22 Dec 2021 09:38:54 UTC",
+            "architectures": "i386 amd64",
+            "components": "main non-free contrib",
+            "description": "Deepin experimental Repository"
+        }
+    },
+    {
+        "url": "https://proposed-packages.deepin.com/",
+        "dist": "dde-nightly",
+        "codename": "deepin-wine",
+        "release_url": "https://proposed-packages.deepin.com/dde-nightly/dists/deepin-wine/Release",
+        "relese": {
+            "origin": "Deepin",
+            "label": "deepin-wine",
+            "codename": "deepin-wine",
+            "version": "",
+            "date": "Wed, 22 Dec 2021 02:09:38 UTC",
+            "architectures": "i386 amd64 mips64el arm64",
+            "components": "main non-free contrib",
+            "description": "Deepin experimental Repository"
+        }
+    },
+    {
+        "url": "http://packages.microsoft.com/repos/",
+        "dist": "code",
+        "codename": "stable",
+        "release_url": "http://packages.microsoft.com/repos/code/dists/stable/Release",
+        "relese": {
+            "origin": "code stable",
+            "label": "code stable",
+            "codename": "stable",
+            "version": "",
+            "date": "Thu, 20 Jan 2022 11:16:21 UTC",
+            "architectures": "amd64 arm64 armhf",
+            "components": "main",
+            "description": "Generated by aptly"
+        }
+    }
+]
