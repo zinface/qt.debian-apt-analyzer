@@ -31,6 +31,10 @@ AptAnalyzerWindow::AptAnalyzerWindow(QWidget *parent) :
 
     new QssDebugKeyPressEater(this);
 
+    QList<int> sizes;
+    sizes << 1000 << 100;
+    ui->splitter_2->setSizes(sizes);
+
     ui->aptDistroList->clear();
     foreach (auto var, QR("://distributions.txt").split('\n', Qt::SkipEmptyParts))
     {
@@ -63,7 +67,22 @@ AptAnalyzerWindow::AptAnalyzerWindow(QWidget *parent) :
             item->setText(splits.at(0));
 
             item->setData(USER_D, splits.at(1));
-            item->setData(USER_C, splits.at(0).split("/").at(1));
+            auto vsplits = splits.at(0).split("/");
+            if (vsplits.count() == 2)
+            {
+                item->setData(USER_C, vsplits.at(1));
+            }
+            else
+            {
+                if (vsplits.count() == 1)
+                {
+                    item->setData(USER_C, ""); // 不需要 codename
+                }
+                else
+                {
+                    item->setData(USER_C, vsplits.mid(1).join("/"));
+                }
+            }
             if (var.contains("http"))
             {
                 item->setData(USER_D, splits.mid(1).join(":"));
@@ -108,6 +127,10 @@ void AptAnalyzerWindow::on_aptDistroList_itemClicked(QListWidgetItem *item)
     if (distribution.startsWith("http"))
     {
         url = QString("%1/dists/%2/Release").arg(distribution).arg(codename);
+        if (codename.isEmpty())
+        {
+            url = QString("%1/%2/Release").arg(distribution).arg(codename);
+        }
     }
     AptRelease r = AptRelease::fromUrl(url);
 
@@ -192,9 +215,21 @@ void AptAnalyzerWindow::apt_repo_load_packages(QString distribution, QString cod
 
     if (distribution.startsWith("http"))
     {
+        // 包含 http 项时
         url = QString("%1/dists/%2/%3/binary-%4/Release").arg(distribution).arg(codename)
               .arg(ui->comb_Components->currentText())
               .arg(ui->comb_Architectures->currentText());
+        if (codename.isEmpty())
+        {
+            url = QString("%1/%2/%3/binary-%4/Release").arg(distribution).arg(codename)
+                  .arg(ui->comb_Components->currentText())
+                  .arg(ui->comb_Architectures->currentText());
+
+            if (ui->comb_Components->currentText().isEmpty())
+            {
+                url = QString("%1/Release").arg(distribution);
+            }
+        }
     }
     Request req_release(url);
     Response resp_release = HttpClient::instance().get(req_release);
@@ -212,24 +247,39 @@ void AptAnalyzerWindow::apt_repo_load_packages(QString distribution, QString cod
         url = QString("%1/dists/%2/%3/binary-%4/Packages.gz").arg(distribution).arg(codename)
               .arg(ui->comb_Components->currentText())
               .arg(ui->comb_Architectures->currentText());
+
+        if (codename.isEmpty())
+        {
+            url = QString("%1/%2/%3/binary-%4/Packages.gz").arg(distribution).arg(codename)
+                  .arg(ui->comb_Components->currentText())
+                  .arg(ui->comb_Architectures->currentText());
+
+            if (ui->comb_Components->currentText().isEmpty())
+            {
+                url = QString("%1/Packages.gz").arg(distribution);
+            }
+        }
     }
 
     ui->apt_loading_progress->setValue(0);
     Response head_package_gz = HttpClient::instance().head(Request(url));
     if (head_package_gz .status() == 200)
     {
+        // 1. 成功访问到 gz 文件，立即准备 get 获取
         ui->apt_loading_progress->setValue(10);
+
         Request req_package(url);
         req_package.setHeader("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36 UOS Community");
         Response get_package = HttpClient::instance().get(req_package);
-        auto src = get_package.content();
+        auto full = get_package.content();
 
         ui->apt_loading_progress->setValue(50);
 
+        // 2. 解析 gz 文件，获取标准可见数据
         QByteArray uncompress;
         z_stream zlib = {0};
         zlib.avail_in = head_package_gz.headContentLength();
-        zlib.next_in = (Bytef *)src.data();
+        zlib.next_in = (Bytef *)full.data();
 
         int e = inflateInit2(&zlib, MAX_WBITS + 16);
         if (e == Z_OK)
@@ -253,19 +303,32 @@ void AptAnalyzerWindow::apt_repo_load_packages(QString distribution, QString cod
 
         ui->apt_loading_progress->setValue(80);
 
-        QStringList packages;
+        // 3. 将服务器的 Packages 数据进行分割为 splits 块
         auto splits = QString(uncompress).split("\n\n", Qt::SkipEmptyParts);
         QList<AptPackage> apt_packages;
         foreach (auto var, splits)
         {
+            // 3.1 尝试对每一块数据进行 AptPackage 标准数据解析
             AptPackage apt_package(var);
             if (apt_package.properties().count() > 3)
             {
+                // 当有效属性值超过 3 个时放入集合
                 apt_packages << apt_package;
             }
         }
-        ui->apt_packages_browser->setText(packages.join("\n"));
-        ui->apt_packages_browser->setText(splits.at(0));
+        // 4. 检查 apt_packages 集合是否包含数据集
+        if (apt_packages.count() == 0)
+        {
+            QString message = QString("报告：已获取 Package.gz 文件，但文件内容为空\n"
+                                      "地址：%1\n"
+                                      "前缀：%2").arg(url).arg(distribution);
+            ui->apt_packages_browser->setText(message);
+            ui->apt_packages_table->clearContents();
+            ui->apt_packages_table->setRowCount(0);
+            ui->apt_packages_content->setText(message);
+            return;
+        }
+        ui->apt_packages_content->setText(apt_packages[0].content());
 
         ui->apt_packages_table->clearContents();
         ui->apt_packages_table->setRowCount(apt_packages.count());
@@ -281,6 +344,7 @@ void AptAnalyzerWindow::apt_repo_load_packages(QString distribution, QString cod
             auto var = apt_packages[i];
             QTableWidgetItem *package = new QTableWidgetItem;
             package->setText(var.Package().value());
+            package->setData(Qt::UserRole, var.content());
             QTableWidgetItem *version = new QTableWidgetItem;
             version->setText(var.Version().value());
             QTableWidgetItem *filename = new QTableWidgetItem;
@@ -337,6 +401,48 @@ void AptAnalyzerWindow::on_checkBox_stateChanged(int arg1)
     else
     {
         this->setStyleSheet("");
+    }
+}
+
+
+void AptAnalyzerWindow::on_e_filter_distribution_textChanged(const QString &arg1)
+{
+    QString input = arg1;
+    int rows = ui->aptDistroList->count();
+    if (input.isEmpty())
+    {
+        for (int i = 0; i < rows; ++i)
+        {
+            ui->aptDistroList->setRowHidden(i, false);
+        }
+    }
+    else
+    {
+        for (int i = 0; i < rows; ++i)
+        {
+            ui->aptDistroList->setRowHidden(i, true);
+        }
+
+        auto items = ui->aptDistroList->findItems(input, Qt::MatchContains);
+
+        if (items.isEmpty() == false)
+        {
+            for (int i = 0; i < items.count(); ++i)
+            {
+                int row = ui->aptDistroList->row(items.at(i));
+                ui->aptDistroList->setRowHidden(row, false);
+            }
+        }
+    }
+}
+
+
+void AptAnalyzerWindow::on_apt_packages_table_cellClicked(int row, int column)
+{
+    auto package = ui->apt_packages_table->item(row, 0);
+    if (package)
+    {
+        ui->apt_packages_content->setText(package->data(Qt::UserRole).toString());
     }
 }
 

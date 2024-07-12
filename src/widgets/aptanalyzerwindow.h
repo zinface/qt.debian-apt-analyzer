@@ -31,6 +31,10 @@ private slots:
 
     void on_checkBox_stateChanged(int arg1);
 
+    void on_e_filter_distribution_textChanged(const QString &arg1);
+
+    void on_apt_packages_table_cellClicked(int row, int column);
+
 private:
     Ui::AptAnalyzerWindow *ui;
 

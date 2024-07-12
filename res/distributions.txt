@@ -102,3 +102,38 @@ ubuntu/xenial-backports
 ubuntu/xenial-proposed
 ubuntu/xenial-security
 ubuntu/xenial-updates
+
+# UOS 规则
+# https://cdn-professional-security.chinauos.com/dists/eagle/1070/
+#                                               ^     ^
+uos/eagle/1030:https://cdn-professional-security.chinauos.com
+uos/eagle/1040:https://cdn-professional-security.chinauos.com
+uos/eagle/1050:https://cdn-professional-security.chinauos.com
+uos/eagle/1060:https://cdn-professional-security.chinauos.com
+uos/eagle/1070:https://cdn-professional-security.chinauos.com
+
+# Deepin Community 规则
+# https://ci.deepin.com/repo/deepin/deepin-community/
+#
+deepin-community-beta3/beige:https://ci.deepin.com/repo/deepin/deepin-community/beta3
+deepin-community-beta3-dde/beige:https://ci.deepin.com/repo/deepin/deepin-community/beta3-dde
+deepin-community-commercial/unstable:https://ci.deepin.com/repo/deepin/deepin-community/commercial
+deepin-community-deepin-keyring/deepin_develop:https://ci.deepin.com/repo/deepin/deepin-community/deepin-keyring
+deepin-community-driver/driver:https://ci.deepin.com/repo/deepin/deepin-community/driver
+deepin-community-linglong-repo/unstable:https://ci.deepin.com/repo/deepin/deepin-community/linglong-repo
+deepin-community-linux-6.6.23/kernel:https://ci.deepin.com/repo/deepin/deepin-community/linux-6.6.23
+deepin-community-linux-libc-dev-loong64/stable:https://ci.deepin.com/repo/deepin/deepin-community/linux-libc-dev-loong64
+deepin-community-lombok/unstable:https://ci.deepin.com/repo/deepin/deepin-community/lombok
+deepin-community-moore-driver/beige:https://ci.deepin.com/repo/deepin/deepin-community/moore-driver
+deepin-community-nvidia-graphics-drivers-530.41.03-3deepin1/testing:https://ci.deepin.com/repo/deepin/deepin-community/nvidia-graphics-drivers-530.41.03-3deepin1
+deepin-community-obs-repos/beige:https://ci.deepin.com/repo/deepin/deepin-community/obs-repos
+deepin-community-obs-repos/kernel:https://ci.deepin.com/repo/deepin/deepin-community/obs-repos
+deepin-community-obs-repos/unstable:https://ci.deepin.com/repo/deepin/deepin-community/obs-repos
+deepin-community-qt-6.6:https://ci.deepin.com/repo/deepin/deepin-community/qt-6.6
+deepin-community-qt-6.6.1/develop:https://ci.deepin.com/repo/deepin/deepin-community/qt-6.6.1
+deepin-community-qtwebengine-opensource-src/stable:https://ci.deepin.com/repo/deepin/deepin-community/qtwebengine-opensource-src
+deepin-community-stable/beige:https://ci.deepin.com/repo/deepin/deepin-community/stable
+deepin-community-stable-gcc12/beige:https://ci.deepin.com/repo/deepin/deepin-community/stable-gcc12
+deepin-community-testing/unstable:https://ci.deepin.com/repo/deepin/deepin-community/testing
+deepin-community-testing-riscv64/:https://ci.deepin.com/repo/deepin/deepin-community/testing-riscv64
+deepin-community-texlive-lang/unstable:https://ci.deepin.com/repo/deepin/deepin-community/texlive-lang
