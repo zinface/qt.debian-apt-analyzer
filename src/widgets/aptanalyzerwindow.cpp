@@ -10,6 +10,7 @@
 
 #include <QKeyEvent>
 #include <QClipboard>
+#include <qssdebugkeypresseater.h>
 
 #define USER_D 990
 #define USER_C 991
@@ -27,6 +28,8 @@ AptAnalyzerWindow::AptAnalyzerWindow(QWidget *parent) :
     pixmap.setDevicePixelRatio(ScreenUtil::ratio(this));
     setWindowIcon(pixmap);
     setTitleIcon(pixmap.scaled(QSize(40, 40)*ScreenUtil::ratio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation));
+
+    new QssDebugKeyPressEater(this);
 
     ui->aptDistroList->clear();
     foreach (auto var, QR("://distributions.txt").split('\n', Qt::SkipEmptyParts))
@@ -294,7 +297,7 @@ void AptAnalyzerWindow::apt_repo_load_packages(QString distribution, QString cod
 
 /**
  * @brief 重新加载软件信息列表
- * @note  由：架构选择、组件等下拉选项触发 
+ * @note  由：架构选择、组件等下拉选项触发
  * @retval None
  */
 void AptAnalyzerWindow::apt_repo_reload_packages()
@@ -326,3 +329,14 @@ void AptAnalyzerWindow::keyPressEvent(QKeyEvent *event)
 
     FramelessWidget::keyPressEvent(event);
 }
+
+void AptAnalyzerWindow::on_checkBox_stateChanged(int arg1)
+{
+    if (arg1 == Qt::CheckState::Checked)
+        this->setStyleSheet(QR("://light.css"));
+    else
+    {
+        this->setStyleSheet("");
+    }
+}
+

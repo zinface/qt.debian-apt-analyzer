@@ -1,0 +1,35 @@
+#aptDistroList,
+#tabWidget,
+#tabWidget_Packages,
+#apt_packages_browser,
+#apt_packages_table,
+#apt_packages_table>*,
+#comb_Architectures,
+#comb_Components {
+       background-color: white;
+       color: black;
+}
+
+QPushButton {
+       background-color: white;
+       color: black;
+}
+
+* {
+       color: black;
+}
+
+QTabBar::tab {
+       color: gray;
+       background-color: white;
+}
+
+QTabBar::tab:hover {
+       color: black;
+       background-color: white;
+}
+
+QTabBar::tab:selected {
+       background-color: gray;
+       color: black;
+}

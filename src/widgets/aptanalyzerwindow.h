@@ -29,6 +29,8 @@ private slots:
     void apt_repo_load_packages(QString distribution, QString codename);
     void apt_repo_reload_packages();
 
+    void on_checkBox_stateChanged(int arg1);
+
 private:
     Ui::AptAnalyzerWindow *ui;
 

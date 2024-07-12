@@ -17,7 +17,7 @@ target_link_qt(debian-apt-analyzer)
 # 引用了一系列资源：
 spark_framework_include_with_git(debian-apt-analyzer
     https://gitee.com/spark-framework-libs/spark-framework-features
-    FEATURES qd defer version screenutil qrcutil
+    FEATURES qd defer eaters analyzer version screenutil qrcutil
 )
 spark_framework_include_with_git(debian-apt-analyzer
     https://gitee.com/spark-framework-libs/debian-analyzer-libs
