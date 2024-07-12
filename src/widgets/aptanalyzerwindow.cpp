@@ -21,7 +21,7 @@ AptAnalyzerWindow::AptAnalyzerWindow(QWidget *parent) :
     ui->setupUi(this);
 
     setupUi(ui->frame);
-//    setTitleLayout(ui->title_layout);
+    setTitleLayout(ui->title_layout);
 
     QPixmap pixmap("://diversity-2019.png");
     pixmap.setDevicePixelRatio(ScreenUtil::ratio(this));
@@ -159,12 +159,12 @@ void AptAnalyzerWindow::on_e_search_returnPressed()
     }
     else
     {
-        auto items = ui->apt_packages_table->findItems(input, Qt::MatchContains);
-
         for (int i = 0; i < rows; ++i)
         {
             ui->apt_packages_table->setRowHidden(i, true);
         }
+
+        auto items = ui->apt_packages_table->findItems(input, Qt::MatchContains);
 
         if (items.isEmpty() == false)
         {
@@ -292,8 +292,18 @@ void AptAnalyzerWindow::apt_repo_load_packages(QString distribution, QString cod
     }
 }
 
+/**
+ * @brief 重新加载软件信息列表
+ * @note  由：架构选择、组件等下拉选项触发 
+ * @retval None
+ */
 void AptAnalyzerWindow::apt_repo_reload_packages()
 {
+    int rows = ui->apt_packages_table->rowCount();
+    for (int i = 0; i < rows; ++i)
+    {
+        ui->apt_packages_table->setRowHidden(i, false);
+    }
     apt_repo_load_packages(m_distribution, m_codename);
 }
 

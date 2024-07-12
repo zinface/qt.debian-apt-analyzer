@@ -41,12 +41,22 @@
         <item>
          <widget class="QLabel" name="label">
           <property name="text">
-           <string>关键词：</string>
+           <string>软件包查询：</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="e_search"/>
+         <widget class="QLineEdit" name="e_search">
+          <property name="minimumSize">
+           <size>
+            <width>300</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="placeholderText">
+           <string>输入要查询的软件包名</string>
+          </property>
+         </widget>
         </item>
         <item>
          <widget class="QPushButton" name="btn_search">
@@ -695,6 +705,9 @@
                  <layout class="QGridLayout" name="gridLayout_3">
                   <item row="0" column="0">
                    <widget class="QStackedWidget" name="stacked_apt_packages">
+                    <property name="currentIndex">
+                     <number>0</number>
+                    </property>
                     <widget class="QWidget" name="stack_table">
                      <layout class="QGridLayout" name="gridLayout">
                       <property name="leftMargin">
