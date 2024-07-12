@@ -1,3 +1,10 @@
+# 显示规则：<显示>:<替换第一部分>
+
+# debian 规则：https://mirrors.bfsu.edu.cn/debian/dists/sid
+# 发行版本路径为：debian 版本代码为 sid
+# deepin 规则：https://mirrors.bfsu.edu.cn/deepin/beige/dists/beige/
+# 发行版本路径为：deepin/beige 版本代码为 beige
+
 debian/Debian10.13
 debian/Debian11.10
 debian/Debian12.6
@@ -39,3 +46,59 @@ debian/trixie
 debian/trixie-backports
 debian/trixie-proposed-updates
 debian/trixie-updates
+
+deepin/apricot:deepin/apricot
+deepin/beige:deepin/beige
+
+lingmo/polaris:https://packages-lingmo.simplelinux.cn.eu.org/polaris
+
+ubuntu/bionic
+ubuntu/bionic-backports
+ubuntu/bionic-proposed
+ubuntu/bionic-security
+ubuntu/bionic-updates
+ubuntu/devel
+ubuntu/devel-backports
+ubuntu/devel-proposed
+ubuntu/devel-security
+ubuntu/devel-updates
+ubuntu/focal
+ubuntu/focal-backports
+ubuntu/focal-proposed
+ubuntu/focal-security
+ubuntu/focal-updates
+ubuntu/jammy
+ubuntu/jammy-backports
+ubuntu/jammy-proposed
+ubuntu/jammy-security
+ubuntu/jammy-updates
+ubuntu/lunar
+ubuntu/lunar-backports
+ubuntu/lunar-proposed
+ubuntu/lunar-security
+ubuntu/lunar-updates
+ubuntu/mantic
+ubuntu/mantic-backports
+ubuntu/mantic-proposed
+ubuntu/mantic-security
+ubuntu/mantic-updates
+ubuntu/noble
+ubuntu/noble-backports
+ubuntu/noble-proposed
+ubuntu/noble-security
+ubuntu/noble-updates
+ubuntu/oracular
+ubuntu/oracular-backports
+ubuntu/oracular-proposed
+ubuntu/oracular-security
+ubuntu/oracular-updates
+ubuntu/trusty
+ubuntu/trusty-backports
+ubuntu/trusty-proposed
+ubuntu/trusty-security
+ubuntu/trusty-updates
+ubuntu/xenial
+ubuntu/xenial-backports
+ubuntu/xenial-proposed
+ubuntu/xenial-security
+ubuntu/xenial-updates

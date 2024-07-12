@@ -11,6 +11,9 @@
 #include <QKeyEvent>
 #include <QClipboard>
 
+#define USER_D 990
+#define USER_C 991
+
 AptAnalyzerWindow::AptAnalyzerWindow(QWidget *parent) :
     FramelessWidget(parent),
     ui(new Ui::AptAnalyzerWindow)
@@ -18,7 +21,7 @@ AptAnalyzerWindow::AptAnalyzerWindow(QWidget *parent) :
     ui->setupUi(this);
 
     setupUi(ui->frame);
-    setTitleLayout(ui->title_layout);
+//    setTitleLayout(ui->title_layout);
 
     QPixmap pixmap("://diversity-2019.png");
     pixmap.setDevicePixelRatio(ScreenUtil::ratio(this));
@@ -26,8 +29,52 @@ AptAnalyzerWindow::AptAnalyzerWindow(QWidget *parent) :
     setTitleIcon(pixmap.scaled(QSize(40, 40)*ScreenUtil::ratio(this), Qt::KeepAspectRatio, Qt::SmoothTransformation));
 
     ui->aptDistroList->clear();
-    ui->aptDistroList->addItems(QR("://distributions.txt").split('\n', Qt::SkipEmptyParts));
+    foreach (auto var, QR("://distributions.txt").split('\n', Qt::SkipEmptyParts))
+    {
+        // 跳过 # 开头的部分
+        if (var.startsWith("#")) continue;
 
+
+        QListWidgetItem *item = new QListWidgetItem;
+        // 检查是有包含需要替换项的部分
+        if (var.contains(":"))
+        {
+            /**
+            # 显示规则：<显示项>
+                      debian/bookworm
+                      用于 debian/dists/bookworm
+                                ^     ^
+            # 显示规则：<显示项>:<替换部分>
+                      lingmo/polaris:https://packages-lingmo.simplelinux.cn.eu.org/polaris
+                      用于 https://packages-lingmo.simplelinux.cn.eu.org/polaris/dists/polaris
+                                                                               ^     ^
+            # 发行版本路径为：debian 版本代码为 sid
+            # debian 规则：https://mirrors.bfsu.edu.cn/debian/dists/sid
+                                                            ^     ^
+
+            # 发行版本路径为：deepin/beige 版本代码为 beige
+            # deepin 规则：https://mirrors.bfsu.edu.cn/deepin/beige/dists/beige/
+                                                                  ^     ^
+            */
+            auto splits = var.split(":");
+            item->setText(splits.at(0));
+
+            item->setData(USER_D, splits.at(1));
+            item->setData(USER_C, splits.at(0).split("/").at(1));
+            if (var.contains("http"))
+            {
+                item->setData(USER_D, splits.mid(1).join(":"));
+            }
+        }
+        else
+        {
+            item->setText(var);
+            auto splits = var.split("/");
+            item->setData(USER_D, splits.at(0));
+            item->setData(USER_C, splits.at(1));
+        }
+        ui->aptDistroList->addItem(item);
+    }
 
     ui->apt_packages_table->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 }
@@ -39,13 +86,26 @@ AptAnalyzerWindow::~AptAnalyzerWindow()
 
 void AptAnalyzerWindow::on_aptDistroList_itemClicked(QListWidgetItem *item)
 {
-    auto dc_splits = item->text().split("/");
-    auto distribution = dc_splits.at(0);
-    auto codename = dc_splits.at(1);
+    auto distribution = item->data(USER_D).toString();
+    auto codename = item->data(USER_C).toString();
+
+// 0. 清空源信息
+    foreach (auto var, AptRelease::keys())
+    {
+        auto lab_var = ui->tabWidget->findChild<QLabel *>("r_" + var);
+        if (lab_var)
+        {
+            lab_var->setText("");
+        }
+    }
 
 // 1. 加载源信息
     // https://mirrors.bfsu.edu.cn/debian/dists/bookworm/Release
     auto url = QString("https://mirrors.bfsu.edu.cn/%1/dists/%2/Release").arg(distribution).arg(codename);
+    if (distribution.startsWith("http"))
+    {
+        url = QString("%1/dists/%2/Release").arg(distribution).arg(codename);
+    }
     AptRelease r = AptRelease::fromUrl(url);
 
     foreach (auto var, r.properties())
@@ -126,6 +186,13 @@ void AptAnalyzerWindow::apt_repo_load_packages(QString distribution, QString cod
     QString url = QString("https://mirrors.bfsu.edu.cn/%1/dists/%2/%3/binary-%4/Release").arg(distribution).arg(codename)
                   .arg(ui->comb_Components->currentText())
                   .arg(ui->comb_Architectures->currentText());
+
+    if (distribution.startsWith("http"))
+    {
+        url = QString("%1/dists/%2/%3/binary-%4/Release").arg(distribution).arg(codename)
+              .arg(ui->comb_Components->currentText())
+              .arg(ui->comb_Architectures->currentText());
+    }
     Request req_release(url);
     Response resp_release = HttpClient::instance().get(req_release);
 
@@ -136,6 +203,13 @@ void AptAnalyzerWindow::apt_repo_load_packages(QString distribution, QString cod
     url = QString("https://mirrors.bfsu.edu.cn/%1/dists/%2/%3/binary-%4/Packages.gz").arg(distribution).arg(codename)
           .arg(ui->comb_Components->currentText())
           .arg(ui->comb_Architectures->currentText());
+
+    if (distribution.startsWith("http"))
+    {
+        url = QString("%1/dists/%2/%3/binary-%4/Packages.gz").arg(distribution).arg(codename)
+              .arg(ui->comb_Components->currentText())
+              .arg(ui->comb_Architectures->currentText());
+    }
 
     ui->apt_loading_progress->setValue(0);
     Response head_package_gz = HttpClient::instance().head(Request(url));
@@ -231,6 +305,10 @@ void AptAnalyzerWindow::keyPressEvent(QKeyEvent *event)
         if (item && item->column() == 2)
         {
             QString fileurl = QString("https://mirrors.bfsu.edu.cn/%1/%2").arg(m_distribution).arg(item->text());
+            if (m_distribution.startsWith("http"))
+            {
+                fileurl = QString("%1/%2").arg(m_distribution).arg(item->text());
+            }
             qApp->clipboard()->setText(fileurl);
             return;
         }
