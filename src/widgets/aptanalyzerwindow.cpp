@@ -1,13 +1,15 @@
 #include "aptanalyzerwindow.h"
-#include "screenutil.h"
 #include "ui_aptanalyzerwindow.h"
 
 #include <apt/release.h>
 
-#include <qrcutil.h>
-
 #include <defer.h>
+#include <qrcutil.h>
+#include <screenutil.h>
 #include <zlib.h>
+
+#include <QKeyEvent>
+#include <QClipboard>
 
 AptAnalyzerWindow::AptAnalyzerWindow(QWidget *parent) :
     FramelessWidget(parent),
@@ -46,9 +48,11 @@ void AptAnalyzerWindow::on_aptDistroList_itemClicked(QListWidgetItem *item)
     auto url = QString("https://mirrors.bfsu.edu.cn/%1/dists/%2/Release").arg(distribution).arg(codename);
     AptRelease r = AptRelease::fromUrl(url);
 
-    foreach (auto var, r.properties()) {
-        auto lab_var = ui->tabWidget->findChild<QLabel*>("r_" + var.key());
-        if (lab_var) {
+    foreach (auto var, r.properties())
+    {
+        auto lab_var = ui->tabWidget->findChild<QLabel *>("r_" + var.key());
+        if (lab_var)
+        {
             lab_var->setText(var.value());
             lab_var->setTextInteractionFlags(Qt::TextSelectableByMouse);
         }
@@ -71,30 +75,41 @@ void AptAnalyzerWindow::on_aptDistroList_itemClicked(QListWidgetItem *item)
 // 2.加载架构与组件对应数据
 // https://mirrors.bfsu.edu.cn/debian/dists/bookworm/main/binary-amd64/Release
     apt_repo_load_packages(distribution, codename);
+
+    m_distribution = distribution ;
+    m_codename = codename  ;
 }
 
 void AptAnalyzerWindow::on_e_search_returnPressed()
 {
     ui->stacked_apt_packages->setCurrentWidget(ui->stack_loading);
-    Defer defer([this](){
+    Defer defer([this]()
+    {
         ui->stacked_apt_packages->setCurrentWidget(ui->stack_table);
     });
 
     QString input = ui->e_search->text();
     int rows = ui->apt_packages_table->rowCount();
-    if (input.isEmpty()) {
-        for (int i = 0; i < rows; ++i) {
+    if (input.isEmpty())
+    {
+        for (int i = 0; i < rows; ++i)
+        {
             ui->apt_packages_table->setRowHidden(i, false);
         }
-    } else {
+    }
+    else
+    {
         auto items = ui->apt_packages_table->findItems(input, Qt::MatchContains);
 
-        for (int i = 0; i < rows; ++i) {
+        for (int i = 0; i < rows; ++i)
+        {
             ui->apt_packages_table->setRowHidden(i, true);
         }
 
-        if (items.isEmpty() == false) {
-            for (int i = 0; i < items.count(); ++i) {
+        if (items.isEmpty() == false)
+        {
+            for (int i = 0; i < items.count(); ++i)
+            {
                 ui->apt_packages_table->setRowHidden(items.at(i)->row(), false);
             }
         }
@@ -109,8 +124,8 @@ void AptAnalyzerWindow::on_btn_search_clicked()
 void AptAnalyzerWindow::apt_repo_load_packages(QString distribution, QString codename)
 {
     QString url = QString("https://mirrors.bfsu.edu.cn/%1/dists/%2/%3/binary-%4/Release").arg(distribution).arg(codename)
-              .arg(ui->comb_Components->currentText())
-              .arg(ui->comb_Architectures->currentText());
+                  .arg(ui->comb_Components->currentText())
+                  .arg(ui->comb_Architectures->currentText());
     Request req_release(url);
     Response resp_release = HttpClient::instance().get(req_release);
 
@@ -119,12 +134,13 @@ void AptAnalyzerWindow::apt_repo_load_packages(QString distribution, QString cod
     //    https://mirrors.bfsu.edu.cn/debian/dists/bookworm/main/binary-amd64/Packages.xz
     //    https://mirrors.bfsu.edu.cn/debian/dists/bullseye/main/binary-all/Packages.gz
     url = QString("https://mirrors.bfsu.edu.cn/%1/dists/%2/%3/binary-%4/Packages.gz").arg(distribution).arg(codename)
-              .arg(ui->comb_Components->currentText())
-              .arg(ui->comb_Architectures->currentText());
+          .arg(ui->comb_Components->currentText())
+          .arg(ui->comb_Architectures->currentText());
 
     ui->apt_loading_progress->setValue(0);
     Response head_package_gz = HttpClient::instance().head(Request(url));
-    if (head_package_gz .status() == 200) {
+    if (head_package_gz .status() == 200)
+    {
         ui->apt_loading_progress->setValue(10);
         Request req_package(url);
         req_package.setHeader("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36 UOS Community");
@@ -136,19 +152,22 @@ void AptAnalyzerWindow::apt_repo_load_packages(QString distribution, QString cod
         QByteArray uncompress;
         z_stream zlib = {0};
         zlib.avail_in = head_package_gz.headContentLength();
-        zlib.next_in = (Bytef*)src.data();
+        zlib.next_in = (Bytef *)src.data();
 
         int e = inflateInit2(&zlib, MAX_WBITS + 16);
-        if (e == Z_OK) {
-            while (true) {
+        if (e == Z_OK)
+        {
+            while (true)
+            {
                 char buffer[4096] = {0};
                 zlib.avail_out = 4096;
-                zlib.next_out = (Bytef*)buffer;
+                zlib.next_out = (Bytef *)buffer;
 
                 int code = inflate(&zlib, Z_FINISH);
                 uncompress.append(buffer, 4096 - zlib.avail_out);
 
-                if (code == Z_STREAM_END) {
+                if (code == Z_STREAM_END)
+                {
                     break;
                 }
             }
@@ -160,9 +179,11 @@ void AptAnalyzerWindow::apt_repo_load_packages(QString distribution, QString cod
         QStringList packages;
         auto splits = QString(uncompress).split("\n\n", Qt::SkipEmptyParts);
         QList<AptPackage> apt_packages;
-        foreach (auto var, splits) {
+        foreach (auto var, splits)
+        {
             AptPackage apt_package(var);
-            if (apt_package.properties().count() > 3) {
+            if (apt_package.properties().count() > 3)
+            {
                 apt_packages << apt_package;
             }
         }
@@ -172,12 +193,14 @@ void AptAnalyzerWindow::apt_repo_load_packages(QString distribution, QString cod
         ui->apt_packages_table->clearContents();
         ui->apt_packages_table->setRowCount(apt_packages.count());
         ui->stacked_apt_packages->setCurrentWidget(ui->stack_loading);
-        Defer defer([this](){
+        Defer defer([this]()
+        {
             ui->stacked_apt_packages->setCurrentWidget(ui->stack_table);
         });
 
         int count = apt_packages.count();
-        for (int i = 0; i < apt_packages.count(); ++i) {
+        for (int i = 0; i < apt_packages.count(); ++i)
+        {
             auto var = apt_packages[i];
             QTableWidgetItem *package = new QTableWidgetItem;
             package->setText(var.Package().value());
@@ -197,9 +220,21 @@ void AptAnalyzerWindow::apt_repo_load_packages(QString distribution, QString cod
 
 void AptAnalyzerWindow::apt_repo_reload_packages()
 {
-    auto dc_splits = ui->aptDistroList->currentItem()->text().split("/");
-    auto distribution = dc_splits.at(0);
-    auto codename = dc_splits.at(1);
-    apt_repo_load_packages(distribution, codename);
+    apt_repo_load_packages(m_distribution, m_codename);
 }
 
+void AptAnalyzerWindow::keyPressEvent(QKeyEvent *event)
+{
+    if (event->modifiers() == Qt::Modifier::CTRL && event->key() == Qt::Key_C)
+    {
+        auto item = ui->apt_packages_table->currentItem();
+        if (item && item->column() == 2)
+        {
+            QString fileurl = QString("https://mirrors.bfsu.edu.cn/%1/%2").arg(m_distribution).arg(item->text());
+            qApp->clipboard()->setText(fileurl);
+            return;
+        }
+    }
+
+    FramelessWidget::keyPressEvent(event);
+}

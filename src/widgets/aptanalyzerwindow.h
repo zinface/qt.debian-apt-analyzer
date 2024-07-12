@@ -6,8 +6,9 @@
 
 
 class QListWidgetItem;
-namespace Ui {
-class AptAnalyzerWindow;
+namespace Ui
+{
+    class AptAnalyzerWindow;
 }
 
 class AptAnalyzerWindow : public FramelessWidget
@@ -30,6 +31,13 @@ private slots:
 
 private:
     Ui::AptAnalyzerWindow *ui;
+
+    QString m_distribution;
+    QString m_codename;
+
+    // QWidget interface
+protected:
+    void keyPressEvent(QKeyEvent *event) override;
 };
 
 #endif // APTANALYZERWINDOW_H
