@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>diversity-2019.png</file>
+        <file>distributions.txt</file>
+    </qresource>
+</RCC>
