@@ -263,7 +263,8 @@ void AptAnalyzerWindow::apt_repo_load_packages(QString distribution, QString cod
 
     ui->apt_loading_progress->setValue(0);
     Response head_package_gz = HttpClient::instance().head(Request(url));
-    if (head_package_gz .status() == 200)
+
+    if (head_package_gz.status() == 200)
     {
         // 1. 成功访问到 gz 文件，立即准备 get 获取
         ui->apt_loading_progress->setValue(10);
@@ -320,6 +321,84 @@ void AptAnalyzerWindow::apt_repo_load_packages(QString distribution, QString cod
         if (apt_packages.count() == 0)
         {
             QString message = QString("报告：已获取 Package.gz 文件，但文件内容为空\n"
+                                      "地址：%1\n"
+                                      "前缀：%2").arg(url).arg(distribution);
+            ui->apt_packages_browser->setText(message);
+            ui->apt_packages_table->clearContents();
+            ui->apt_packages_table->setRowCount(0);
+            ui->apt_packages_content->setText(message);
+            return;
+        }
+        ui->apt_packages_content->setText(apt_packages[0].content());
+
+        ui->apt_packages_table->clearContents();
+        ui->apt_packages_table->setRowCount(apt_packages.count());
+        ui->stacked_apt_packages->setCurrentWidget(ui->stack_loading);
+        Defer defer([this]()
+        {
+            ui->stacked_apt_packages->setCurrentWidget(ui->stack_table);
+        });
+
+        int count = apt_packages.count();
+        for (int i = 0; i < apt_packages.count(); ++i)
+        {
+            auto var = apt_packages[i];
+            QTableWidgetItem *package = new QTableWidgetItem;
+            package->setText(var.Package().value());
+            package->setData(Qt::UserRole, var.content());
+            QTableWidgetItem *version = new QTableWidgetItem;
+            version->setText(var.Version().value());
+            QTableWidgetItem *filename = new QTableWidgetItem;
+            filename->setText(var.Filename().value());
+
+            ui->apt_packages_table->setItem(i, 0, package);
+            ui->apt_packages_table->setItem(i, 1, version);
+            ui->apt_packages_table->setItem(i, 2, filename);
+        }
+
+        ui->apt_loading_progress->setValue(100);
+
+        return;
+    }
+
+    url.replace("Packages.gz", "Packages");
+    ui->apt_loading_progress->setValue(0);
+    Response head_package = HttpClient::instance().head(Request(url));
+
+    if (head_package.status() == 200)
+    {
+        // 1. 成功访问到 gz 文件，立即准备 get 获取
+        ui->apt_loading_progress->setValue(10);
+
+        Request req_package(url);
+        req_package.setHeader("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36 UOS Community");
+        Response get_package = HttpClient::instance().get(req_package);
+        auto full = get_package.content();
+
+        ui->apt_loading_progress->setValue(50);
+
+        // 2. 解析 gz 文件，获取标准可见数据
+        QByteArray uncompress = full;
+
+        ui->apt_loading_progress->setValue(80);
+
+        // 3. 将服务器的 Packages 数据进行分割为 splits 块
+        auto splits = QString(uncompress).split("\n\n", Qt::SkipEmptyParts);
+        QList<AptPackage> apt_packages;
+        foreach (auto var, splits)
+        {
+            // 3.1 尝试对每一块数据进行 AptPackage 标准数据解析
+            AptPackage apt_package(var);
+            if (apt_package.properties().count() > 3)
+            {
+                // 当有效属性值超过 3 个时放入集合
+                apt_packages << apt_package;
+            }
+        }
+        // 4. 检查 apt_packages 集合是否包含数据集
+        if (apt_packages.count() == 0)
+        {
+            QString message = QString("报告：已获取 Package 文件，但文件内容为空\n"
                                       "地址：%1\n"
                                       "前缀：%2").arg(url).arg(distribution);
             ui->apt_packages_browser->setText(message);
