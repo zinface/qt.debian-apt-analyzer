@@ -36,7 +36,11 @@ AptAnalyzerWindow::AptAnalyzerWindow(QWidget *parent) :
     ui->splitter_2->setSizes(sizes);
 
     ui->aptDistroList->clear();
+#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
+    foreach (auto var, QR("://distributions.txt").split('\n', QString::SkipEmptyParts))
+#else
     foreach (auto var, QR("://distributions.txt").split('\n', Qt::SkipEmptyParts))
+#endif
     {
         // 跳过 # 开头的部分
         if (var.startsWith("#")) continue;
@@ -150,12 +154,20 @@ void AptAnalyzerWindow::on_aptDistroList_itemClicked(QListWidgetItem *item)
 
     ui->comb_Components->disconnect();
     ui->comb_Components->clear();
+#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
+    ui->comb_Components->addItems(r.Components().value().split(QRegExp("\\s+"), QString::SkipEmptyParts));
+#else
     ui->comb_Components->addItems(r.Components().value().split(QRegExp("\\s+"), Qt::SkipEmptyParts));
+#endif
     connect(ui->comb_Components, SIGNAL(currentIndexChanged(int)), this, SLOT(apt_repo_reload_packages()));
 
     ui->comb_Architectures->disconnect();
     ui->comb_Architectures->clear();
+#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
+    ui->comb_Architectures->addItems(r.Architectures().value().split(QRegExp("\\s+"), QString::SkipEmptyParts));
+#else
     ui->comb_Architectures->addItems(r.Architectures().value().split(QRegExp("\\s+"), Qt::SkipEmptyParts));
+#endif
     connect(ui->comb_Architectures, SIGNAL(currentIndexChanged(int)), this, SLOT(apt_repo_reload_packages()));
 
 // 2.加载架构与组件对应数据
@@ -305,7 +317,11 @@ void AptAnalyzerWindow::apt_repo_load_packages(QString distribution, QString cod
         ui->apt_loading_progress->setValue(80);
 
         // 3. 将服务器的 Packages 数据进行分割为 splits 块
+#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
+        auto splits = QString(uncompress).split("\n\n", QString::SkipEmptyParts);
+#else
         auto splits = QString(uncompress).split("\n\n", Qt::SkipEmptyParts);
+#endif
         QList<AptPackage> apt_packages;
         foreach (auto var, splits)
         {
@@ -383,7 +399,11 @@ void AptAnalyzerWindow::apt_repo_load_packages(QString distribution, QString cod
         ui->apt_loading_progress->setValue(80);
 
         // 3. 将服务器的 Packages 数据进行分割为 splits 块
+#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
+        auto splits = QString(uncompress).split("\n\n", QString::SkipEmptyParts);
+#else
         auto splits = QString(uncompress).split("\n\n", Qt::SkipEmptyParts);
+#endif
         QList<AptPackage> apt_packages;
         foreach (auto var, splits)
         {
