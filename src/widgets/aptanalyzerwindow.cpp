@@ -540,8 +540,14 @@ void AptAnalyzerWindow::apt_repo_load_packages(QString distribution, QString cod
 
     if (head_package_gz.status() == 404 && head_package.status() == 404)
     {
+        // 无法请求到架构任何数据时显示错误页
         ui->apt_loading_progress->setValue(100);
         ui->stacked_apt_packages->setCurrentWidget(ui->stack_fail);
+    }
+    else
+    {
+        // 否则显示回 table 页
+        ui->stacked_apt_packages->setCurrentWidget(ui->stack_table);
     }
 }
 
