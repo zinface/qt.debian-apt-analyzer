@@ -47,10 +47,161 @@ debian/trixie-backports
 debian/trixie-proposed-updates
 debian/trixie-updates
 
+# Deepin 规则
+#
 deepin/apricot:deepin/apricot
 deepin/beige:deepin/beige
 
+# Lingmo OS 规则
+#
 lingmo/polaris:https://packages-lingmo.simplelinux.cn.eu.org/polaris
+
+
+# UOS 规则
+# https://cdn-professional-security.chinauos.com/dists/eagle/1070/
+#                                               ^     ^
+uos/eagle/1030:https://cdn-professional-security.chinauos.com
+uos/eagle/1040:https://cdn-professional-security.chinauos.com
+uos/eagle/1050:https://cdn-professional-security.chinauos.com
+uos/eagle/1060:https://cdn-professional-security.chinauos.com
+uos/eagle/1070:https://cdn-professional-security.chinauos.com
+
+# Deepin Community 规则
+# https://ci.deepin.com/repo/deepin/deepin-community/
+#
+deepin-community-beta3/beige                                          :https://ci.deepin.com/repo/deepin/deepin-community/beta3
+deepin-community-beta3-dde/beige                                      :https://ci.deepin.com/repo/deepin/deepin-community/beta3-dde
+deepin-community-commercial/unstable                                  :https://ci.deepin.com/repo/deepin/deepin-community/commercial
+deepin-community-deepin-keyring/deepin_develop                        :https://ci.deepin.com/repo/deepin/deepin-community/deepin-keyring
+deepin-community-driver/driver                                        :https://ci.deepin.com/repo/deepin/deepin-community/driver
+deepin-community-linglong-repo/unstable                               :https://ci.deepin.com/repo/deepin/deepin-community/linglong-repo
+deepin-community-linux-6.6.23/kernel                                  :https://ci.deepin.com/repo/deepin/deepin-community/linux-6.6.23
+deepin-community-linux-libc-dev-loong64/stable                        :https://ci.deepin.com/repo/deepin/deepin-community/linux-libc-dev-loong64
+deepin-community-lombok/unstable                                      :https://ci.deepin.com/repo/deepin/deepin-community/lombok
+deepin-community-moore-driver/beige                                   :https://ci.deepin.com/repo/deepin/deepin-community/moore-driver
+deepin-community-nvidia-graphics-drivers-530.41.03-3deepin1/testing   :https://ci.deepin.com/repo/deepin/deepin-community/nvidia-graphics-drivers-530.41.03-3deepin1
+deepin-community-obs-repos/beige                                      :https://ci.deepin.com/repo/deepin/deepin-community/obs-repos
+deepin-community-obs-repos/kernel                                     :https://ci.deepin.com/repo/deepin/deepin-community/obs-repos
+deepin-community-obs-repos/unstable                                   :https://ci.deepin.com/repo/deepin/deepin-community/obs-repos
+deepin-community-qt-6.6                                               :https://ci.deepin.com/repo/deepin/deepin-community/qt-6.6
+deepin-community-qt-6.6.1/develop                                     :https://ci.deepin.com/repo/deepin/deepin-community/qt-6.6.1
+deepin-community-qtwebengine-opensource-src/stable                    :https://ci.deepin.com/repo/deepin/deepin-community/qtwebengine-opensource-src
+deepin-community-stable/beige                                         :https://ci.deepin.com/repo/deepin/deepin-community/stable
+deepin-community-stable-gcc12/beige                                   :https://ci.deepin.com/repo/deepin/deepin-community/stable-gcc12
+deepin-community-testing/unstable                                     :https://ci.deepin.com/repo/deepin/deepin-community/testing
+deepin-community-testing-riscv64/                                     :https://ci.deepin.com/repo/deepin/deepin-community/testing-riscv64
+deepin-community-texlive-lang/unstable                                :https://ci.deepin.com/repo/deepin/deepin-community/texlive-lang
+
+
+# Mozilla Firefox 规则
+#
+firefox/mozilla:https://packages.mozilla.org/apt
+
+# Loongnix 规则
+#
+loongnix/DaoXiangHu-cartoons   :http://pkg.loongnix.cn
+loongnix/DaoXiangHu-embedded   :http://pkg.loongnix.cn
+loongnix/DaoXiangHu-stable     :http://pkg.loongnix.cn
+loongnix/DaoXiangHu-testing    :http://pkg.loongnix.cn
+loongnix/DaoXiangHu-thirdparty :http://pkg.loongnix.cn
+
+loongnix-server/8.3            :http://pkg.loongnix.cn
+loongnix-server/8.4            :http://pkg.loongnix.cn
+
+# Kylin 规则
+kylin/10.0                                 :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.0-2101-KCM                        :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.0-210507-yun-SZSW                 :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.0-fixs                            :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.0-jxsw                            :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.0-zyj                             :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1                                 :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-0820-2                          :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-2107-990-DKY                    :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-2107-DKY                        :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-2107-hwe-updates                :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-2107-updates                    :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-2203-990-CCB                    :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-2203-990-ZYD                    :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-2203-CCB                        :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-2203-LT                         :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-2203-general-edu-updates        :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-2203-hwe-LT                     :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-2203-hwe-general-edu-updates    :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-2203-hwe-updates                :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-2203-hwe-updates-preview        :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-2203-oem-hw-9006c-activation    :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-2203-oem-hw-990-activation      :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-2203-updates                    :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-2203-updates-preview            :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-2209-hwe-pp-updates             :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-2209-hwe-updates                :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-2209-updates                    :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-2303-XHS                        :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-2303-hwe-pp-updates             :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-2303-hwe-pp-updates-preview     :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-2303-hwe-updates                :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-2303-hwe-updates-preview        :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-2303-oem-kmre                   :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-2303-updates                    :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-2303-updates-pre                :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-2303-updates-preview            :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-2304-tablet-updates             :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-2306-gf                         :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-W525-2303-feature-preview       :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-ekylin                          :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-embedded                        :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-embedded-ctyun                  :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-embedded-rockchip               :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-embedded-update                 :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-gb18030-2022-font               :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-hwe                             :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-hwe-oem-dell                    :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-kirin9006C-2303-feature         :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-kirin9006C-2303-feature-preview :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-kirin9006C-feature              :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-kirin9006C-feature-preview      :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-kirin990-2203u2-oem-hw          :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-kirin990-2303-feature           :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-kirin990-2303-feature-preview   :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-kirin990-feature                :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-kirin990-feature-preview        :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-kirinM900-2303-feature-preview  :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-kv                              :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-la64                            :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-oem-hp                          :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-pv                              :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-pw                              :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-rk3588                          :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-sm                              :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-sw64                            :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-vkylin                          :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-wayland-2203-fix-disk           :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-wayland-2203-panguw             :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-wayland-2203-updates            :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-wayland-2203-updates-preview    :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-wayland-2303-updates            :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/10.1-wayland-2303-updates-preview    :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/4.0.2                                :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/4.0.2-desktop                        :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/4.0.2-server                         :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/4.0.2sp1                             :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/4.0.2sp1-desktop                     :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/4.0.2sp1-server                      :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/4.0.2sp2                             :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/4.0.2sp2-desktop                     :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/4.0.2sp2-server                      :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/4.0.2sp2-server-ft2000               :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/4.0.2sp3                             :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/4.0.2sp3-desktop                     :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/4.0.2sp3-server                      :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/4.0.2sp4                             :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/4.0.2sp4-desktop                     :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/4.0.2sp4-server                      :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/Intel-Edu                            :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/V10-GFB-020                          :https://archive.kylinos.cn/kylin/KYLIN-ALL
+kylin/developer-kits                       :https://archive.kylinos.cn/kylin/KYLIN-ALL
+
 
 ubuntu/bionic
 ubuntu/bionic-backports
@@ -103,37 +254,8 @@ ubuntu/xenial-proposed
 ubuntu/xenial-security
 ubuntu/xenial-updates
 
-# UOS 规则
-# https://cdn-professional-security.chinauos.com/dists/eagle/1070/
-#                                               ^     ^
-uos/eagle/1030:https://cdn-professional-security.chinauos.com
-uos/eagle/1040:https://cdn-professional-security.chinauos.com
-uos/eagle/1050:https://cdn-professional-security.chinauos.com
-uos/eagle/1060:https://cdn-professional-security.chinauos.com
-uos/eagle/1070:https://cdn-professional-security.chinauos.com
-
-# Deepin Community 规则
-# https://ci.deepin.com/repo/deepin/deepin-community/
+# Ubuntu Kylin 规则
 #
-deepin-community-beta3/beige:https://ci.deepin.com/repo/deepin/deepin-community/beta3
-deepin-community-beta3-dde/beige:https://ci.deepin.com/repo/deepin/deepin-community/beta3-dde
-deepin-community-commercial/unstable:https://ci.deepin.com/repo/deepin/deepin-community/commercial
-deepin-community-deepin-keyring/deepin_develop:https://ci.deepin.com/repo/deepin/deepin-community/deepin-keyring
-deepin-community-driver/driver:https://ci.deepin.com/repo/deepin/deepin-community/driver
-deepin-community-linglong-repo/unstable:https://ci.deepin.com/repo/deepin/deepin-community/linglong-repo
-deepin-community-linux-6.6.23/kernel:https://ci.deepin.com/repo/deepin/deepin-community/linux-6.6.23
-deepin-community-linux-libc-dev-loong64/stable:https://ci.deepin.com/repo/deepin/deepin-community/linux-libc-dev-loong64
-deepin-community-lombok/unstable:https://ci.deepin.com/repo/deepin/deepin-community/lombok
-deepin-community-moore-driver/beige:https://ci.deepin.com/repo/deepin/deepin-community/moore-driver
-deepin-community-nvidia-graphics-drivers-530.41.03-3deepin1/testing:https://ci.deepin.com/repo/deepin/deepin-community/nvidia-graphics-drivers-530.41.03-3deepin1
-deepin-community-obs-repos/beige:https://ci.deepin.com/repo/deepin/deepin-community/obs-repos
-deepin-community-obs-repos/kernel:https://ci.deepin.com/repo/deepin/deepin-community/obs-repos
-deepin-community-obs-repos/unstable:https://ci.deepin.com/repo/deepin/deepin-community/obs-repos
-deepin-community-qt-6.6:https://ci.deepin.com/repo/deepin/deepin-community/qt-6.6
-deepin-community-qt-6.6.1/develop:https://ci.deepin.com/repo/deepin/deepin-community/qt-6.6.1
-deepin-community-qtwebengine-opensource-src/stable:https://ci.deepin.com/repo/deepin/deepin-community/qtwebengine-opensource-src
-deepin-community-stable/beige:https://ci.deepin.com/repo/deepin/deepin-community/stable
-deepin-community-stable-gcc12/beige:https://ci.deepin.com/repo/deepin/deepin-community/stable-gcc12
-deepin-community-testing/unstable:https://ci.deepin.com/repo/deepin/deepin-community/testing
-deepin-community-testing-riscv64/:https://ci.deepin.com/repo/deepin/deepin-community/testing-riscv64
-deepin-community-texlive-lang/unstable:https://ci.deepin.com/repo/deepin/deepin-community/texlive-lang
+ubuntukylin/focal
+ubuntukylin/groovy
+ubuntukylin/jammy
