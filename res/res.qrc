@@ -11,5 +11,6 @@
         <file>loongnix.png</file>
         <file>ubuntukylin.png</file>
         <file>linux.png</file>
+        <file>termux.png</file>
     </qresource>
 </RCC>
