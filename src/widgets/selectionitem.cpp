@@ -2,6 +2,7 @@
 #include "ui_selectionitem.h"
 
 #include <QColor>
+#include <screenutil.h>
 
 SelectionItem::SelectionItem(QWidget *parent) :
     QWidget(parent),
@@ -18,6 +19,7 @@ SelectionItem::~SelectionItem()
 void SelectionItem::setIcon(const QString &icon)
 {
     QPixmap pixmap = QPixmap(icon).scaledToHeight(ui->icon->height(), Qt::SmoothTransformation);
+    pixmap.setDevicePixelRatio(ScreenUtil::ratio(this));
     ui->icon->resize(pixmap.size());
     ui->icon->setPixmap(pixmap);
 }
