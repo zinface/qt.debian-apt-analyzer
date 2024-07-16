@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.13.4)
 
 include(cmake/SparkWithGit.cmake)
 
-project(debian-apt-analyzer LANGUAGES CXX VERSION 0.0.7)
+project(debian-apt-analyzer LANGUAGES CXX VERSION 0.0.8)
 
 spark_initialize_modules()
 
