@@ -3,5 +3,13 @@
         <file>diversity-2019.png</file>
         <file>distributions.txt</file>
         <file>light.css</file>
+        <file>deepin.png</file>
+        <file>debian.png</file>
+        <file>ubuntu.png</file>
+        <file>lingmo.png</file>
+        <file>kylin.png</file>
+        <file>loongnix.png</file>
+        <file>ubuntukylin.png</file>
+        <file>linux.png</file>
     </qresource>
 </RCC>

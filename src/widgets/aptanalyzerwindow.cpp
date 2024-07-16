@@ -1,4 +1,5 @@
 #include "aptanalyzerwindow.h"
+#include "selectionitem.h"
 #include "ui_aptanalyzerwindow.h"
 
 #include <apt/release.h>
@@ -45,6 +46,8 @@ AptAnalyzerWindow::AptAnalyzerWindow(QWidget *parent) :
         // 跳过 # 开头的部分
         if (var.startsWith("#")) continue;
 
+        // 处理 “A/B   :C” 中间出现的任意空白字符部分
+        var = var.replace(QRegExp("\\s+"), "");
 
         QListWidgetItem *item = new QListWidgetItem;
         // 检查是有包含需要替换项的部分
@@ -99,7 +102,80 @@ AptAnalyzerWindow::AptAnalyzerWindow(QWidget *parent) :
             item->setData(USER_D, splits.at(0));
             item->setData(USER_C, splits.at(1));
         }
+
         ui->aptDistroList->addItem(item);
+        if (item->text().startsWith("lingmo"))
+        {
+            SelectionItem *item_widget = new SelectionItem;
+            item_widget->setIcon(":/lingmo.png");
+            item_widget->setText(item->text());
+            item->setText("");
+            item->setSizeHint(item_widget->sizeHint());
+            ui->aptDistroList->setItemWidget(item, item_widget);
+        }
+        else if (item->text().startsWith("debian"))
+        {
+            SelectionItem *item_widget = new SelectionItem;
+            item_widget->setIcon(":/debian.png");
+            item_widget->setText(item->text());
+            item->setText("");
+            item->setSizeHint(item_widget->sizeHint());
+            ui->aptDistroList->setItemWidget(item, item_widget);
+        }
+        else if (item->text().startsWith("deepin"))
+        {
+            SelectionItem *item_widget = new SelectionItem;
+            item_widget->setIcon(":/deepin.png");
+            item_widget->setText(item->text());
+            item->setText("");
+            item->setSizeHint(item_widget->sizeHint());
+            ui->aptDistroList->setItemWidget(item, item_widget);
+        }
+        else if (item->text().startsWith("ubuntu") && !item->text().startsWith("ubuntukylin"))
+        {
+            SelectionItem *item_widget = new SelectionItem;
+            item_widget->setIcon(":/ubuntu.png");
+            item_widget->setText(item->text());
+            item->setText("");
+            item->setSizeHint(item_widget->sizeHint());
+            ui->aptDistroList->setItemWidget(item, item_widget);
+        }
+        else if (item->text().startsWith("ubuntukylin"))
+        {
+            SelectionItem *item_widget = new SelectionItem;
+            item_widget->setIcon(":/ubuntukylin.png");
+            item_widget->setText(item->text());
+            item->setText("");
+            item->setSizeHint(item_widget->sizeHint());
+            ui->aptDistroList->setItemWidget(item, item_widget);
+        }
+        else if (item->text().startsWith("kylin"))
+        {
+            SelectionItem *item_widget = new SelectionItem;
+            item_widget->setIcon(":/kylin.png");
+            item_widget->setText(item->text());
+            item->setText("");
+            item->setSizeHint(item_widget->sizeHint());
+            ui->aptDistroList->setItemWidget(item, item_widget);
+        }
+        else if (item->text().startsWith("loongnix"))
+        {
+            SelectionItem *item_widget = new SelectionItem;
+            item_widget->setIcon(":/loongnix.png");
+            item_widget->setText(item->text());
+            item->setText("");
+            item->setSizeHint(item_widget->sizeHint());
+            ui->aptDistroList->setItemWidget(item, item_widget);
+        }
+        else
+        {
+            SelectionItem *item_widget = new SelectionItem;
+            item_widget->setIcon(":/linux.png");
+            item_widget->setText(item->text());
+            item->setText("");
+            item->setSizeHint(item_widget->sizeHint());
+            ui->aptDistroList->setItemWidget(item, item_widget);
+        }
     }
 
     ui->apt_packages_table->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
@@ -147,6 +223,7 @@ void AptAnalyzerWindow::on_aptDistroList_itemClicked(QListWidgetItem *item)
             lab_var->setTextInteractionFlags(Qt::TextSelectableByMouse);
         }
     }
+    ui->apt_packages_browser->setText(r.content());
 
 // 1.1 显示分类
     ui->lab_Components->setText(r.Components().value());
@@ -246,7 +323,10 @@ void AptAnalyzerWindow::apt_repo_load_packages(QString distribution, QString cod
     Request req_release(url);
     Response resp_release = HttpClient::instance().get(req_release);
 
-    ui->apt_packages_browser->setText(resp_release.content());
+    if (resp_release.status() == 200)
+    {
+        ui->apt_packages_browser->setText(resp_release.content());
+    }
 
     //    https://mirrors.bfsu.edu.cn/debian/dists/bookworm/main/binary-amd64/Packages.xz
     //    https://mirrors.bfsu.edu.cn/debian/dists/bullseye/main/binary-all/Packages.gz
@@ -276,7 +356,7 @@ void AptAnalyzerWindow::apt_repo_load_packages(QString distribution, QString cod
     ui->apt_loading_progress->setValue(0);
     Response head_package_gz = HttpClient::instance().head(Request(url));
 
-    if (head_package_gz.status() == 200)
+    if (head_package_gz.status() != 404)
     {
         // 1. 成功访问到 gz 文件，立即准备 get 获取
         ui->apt_loading_progress->setValue(10);
@@ -381,7 +461,7 @@ void AptAnalyzerWindow::apt_repo_load_packages(QString distribution, QString cod
     ui->apt_loading_progress->setValue(0);
     Response head_package = HttpClient::instance().head(Request(url));
 
-    if (head_package.status() == 200)
+    if (head_package.status() != 404)
     {
         // 1. 成功访问到 gz 文件，立即准备 get 获取
         ui->apt_loading_progress->setValue(10);
@@ -503,7 +583,10 @@ void AptAnalyzerWindow::on_checkBox_stateChanged(int arg1)
     }
 }
 
-
+/**
+ * @brief 左侧列表项搜索过滤
+ * @param arg1
+ */
 void AptAnalyzerWindow::on_e_filter_distribution_textChanged(const QString &arg1)
 {
     QString input = arg1;
@@ -517,12 +600,23 @@ void AptAnalyzerWindow::on_e_filter_distribution_textChanged(const QString &arg1
     }
     else
     {
+        QList<QListWidgetItem *> items;
         for (int i = 0; i < rows; ++i)
         {
+            auto item = ui->aptDistroList->item(i);
+            auto widget = ui->aptDistroList->itemWidget(item);
             ui->aptDistroList->setRowHidden(i, true);
-        }
 
-        auto items = ui->aptDistroList->findItems(input, Qt::MatchContains);
+            // 从 item 中取出的控件进行转换
+            auto seletion = qobject_cast<SelectionItem *>(widget);
+            if (seletion)
+            {
+                if (seletion->text().contains(input, Qt::CaseInsensitive))
+                {
+                    items.append(item);
+                }
+            }
+        }
 
         if (items.isEmpty() == false)
         {
