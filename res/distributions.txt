@@ -99,14 +99,14 @@ firefox/mozilla:https://packages.mozilla.org/apt
 
 # Loongnix 规则
 #
-loongnix/DaoXiangHu-cartoons   :http://pkg.loongnix.cn
-loongnix/DaoXiangHu-embedded   :http://pkg.loongnix.cn
-loongnix/DaoXiangHu-stable     :http://pkg.loongnix.cn
-loongnix/DaoXiangHu-testing    :http://pkg.loongnix.cn
-loongnix/DaoXiangHu-thirdparty :http://pkg.loongnix.cn
+loongnix/DaoXiangHu-cartoons   :http://pkg.loongnix.cn/loongnix
+loongnix/DaoXiangHu-embedded   :http://pkg.loongnix.cn/loongnix
+loongnix/DaoXiangHu-stable     :http://pkg.loongnix.cn/loongnix
+loongnix/DaoXiangHu-testing    :http://pkg.loongnix.cn/loongnix
+loongnix/DaoXiangHu-thirdparty :http://pkg.loongnix.cn/loongnix
 
-loongnix-server/8.3            :http://pkg.loongnix.cn
-loongnix-server/8.4            :http://pkg.loongnix.cn
+loongnix-server/8.3            :http://pkg.loongnix.cn/loongnix-server
+loongnix-server/8.4            :http://pkg.loongnix.cn/loongnix-server
 
 # Kylin 规则
 kylin/10.0                                 :https://archive.kylinos.cn/kylin/KYLIN-ALL
