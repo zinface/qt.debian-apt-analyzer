@@ -198,6 +198,15 @@ AptAnalyzerWindow::AptAnalyzerWindow(QWidget *parent) :
             item->setSizeHint(item_widget->sizeHint());
             ui->aptDistroList->setItemWidget(item, item_widget);
         }
+        else if (item->text().startsWith("parrot"))
+        {
+            SelectionItem *item_widget = new SelectionItem;
+            item_widget->setIcon(":/parrot.png");
+            item_widget->setText(item->text());
+            item->setText("");
+            item->setSizeHint(item_widget->sizeHint());
+            ui->aptDistroList->setItemWidget(item, item_widget);
+        }
         else
         {
             SelectionItem *item_widget = new SelectionItem;

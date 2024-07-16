@@ -15,5 +15,6 @@
         <file>vscode.png</file>
         <file>edge.png</file>
         <file>ros.png</file>
+        <file>parrot.png</file>
     </qresource>
 </RCC>
