@@ -179,6 +179,7 @@ AptAnalyzerWindow::AptAnalyzerWindow(QWidget *parent) :
     }
 
     ui->apt_packages_table->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->groupBox->setTitle(QString("发行版与源 - (数量: %1)").arg(ui->aptDistroList->count()));
 }
 
 AptAnalyzerWindow::~AptAnalyzerWindow()
