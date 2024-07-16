@@ -333,6 +333,21 @@ kylin/V10-GFB-020-updates                        :https://archive.kylinos.cn/kyl
 kylin/V10-GFB-2207                               :https://archive.kylinos.cn/kylin/KYLIN-ALL
 kylin/developer-kits                             :https://archive.kylinos.cn/kylin/KYLIN-ALL
 
+# Microsoft 规则
+#
+Microsoft-VSCode/stable  :https://packages.microsoft.com/repos/vscode
+Microsoft-Edge/stable    :https://packages.microsoft.com/repos/edge
+
+# ROS 规则
+#
+ROS/bionic    :ros/ubuntu
+ROS/buster    :ros/ubuntu
+ROS/focal     :ros/ubuntu
+ROS/jessie    :ros/ubuntu
+ROS/stretch   :ros/ubuntu
+ROS/trusty    :ros/ubuntu
+ROS/xenial    :ros/ubuntu
+
 # Termux 规则
 #
 termux-main/stable:https://mirrors.tuna.tsinghua.edu.cn/termux/apt/termux-main
