@@ -2,4 +2,8 @@
 
 - 效果图
 
-    ![alt text](assets/image.png)
+    ![alt text](assets/image1.png)
+
+- 使用说明
+    
+    贴子: https://bbs.deepin.org.cn/post/275133
