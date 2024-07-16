@@ -338,6 +338,35 @@ kylin/developer-kits                             :https://archive.kylinos.cn/kyl
 Microsoft-VSCode/stable  :https://packages.microsoft.com/repos/vscode
 Microsoft-Edge/stable    :https://packages.microsoft.com/repos/edge
 
+# parrot 规则
+#
+parrot/6                     :https://mirrors.tuna.tsinghua.edu.cn/parrot
+parrot/6-backports           :https://mirrors.tuna.tsinghua.edu.cn/parrot
+parrot/6-backports-updates   :https://mirrors.tuna.tsinghua.edu.cn/parrot
+parrot/6-security            :https://mirrors.tuna.tsinghua.edu.cn/parrot
+parrot/6-updates             :https://mirrors.tuna.tsinghua.edu.cn/parrot
+parrot/6-wrap                :https://mirrors.tuna.tsinghua.edu.cn/parrot
+#parrot/json                  :https://mirrors.tuna.tsinghua.edu.cn/parrot
+parrot/lory                  :https://mirrors.tuna.tsinghua.edu.cn/parrot
+parrot/lory-backports        :https://mirrors.tuna.tsinghua.edu.cn/parrot
+parrot/lory-security         :https://mirrors.tuna.tsinghua.edu.cn/parrot
+parrot/lory-updates          :https://mirrors.tuna.tsinghua.edu.cn/parrot
+parrot/lts                   :https://mirrors.tuna.tsinghua.edu.cn/parrot
+parrot/lts-backports         :https://mirrors.tuna.tsinghua.edu.cn/parrot
+parrot/lts-security          :https://mirrors.tuna.tsinghua.edu.cn/parrot
+parrot/lts-updates           :https://mirrors.tuna.tsinghua.edu.cn/parrot
+parrot/lts-wrap              :https://mirrors.tuna.tsinghua.edu.cn/parrot
+parrot/lts-wrap-backports    :https://mirrors.tuna.tsinghua.edu.cn/parrot
+parrot/packages              :https://mirrors.tuna.tsinghua.edu.cn/parrot
+parrot/parrot                :https://mirrors.tuna.tsinghua.edu.cn/parrot
+parrot/parrot-backports      :https://mirrors.tuna.tsinghua.edu.cn/parrot
+parrot/parrot-security       :https://mirrors.tuna.tsinghua.edu.cn/parrot
+parrot/parrot-updates        :https://mirrors.tuna.tsinghua.edu.cn/parrot
+parrot/parrot-wrap           :https://mirrors.tuna.tsinghua.edu.cn/parrot
+parrot/rolling               :https://mirrors.tuna.tsinghua.edu.cn/parrot
+parrot/rolling-security      :https://mirrors.tuna.tsinghua.edu.cn/parrot
+parrot/rolling-testing       :https://mirrors.tuna.tsinghua.edu.cn/parrot
+
 # ROS 规则
 #
 ROS/bionic    :ros/ubuntu
