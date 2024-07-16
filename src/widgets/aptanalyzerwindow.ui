@@ -805,6 +805,21 @@
                       </item>
                      </layout>
                     </widget>
+                    <widget class="QWidget" name="stack_fail">
+                     <layout class="QGridLayout" name="gridLayout">
+                      <item row="0" column="0">
+                       <widget class="QLabel" name="label_19">
+                        <property name="text">
+                         <string>无法获取到任何数据
+此架构下没有任何数据，请更换架构</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignCenter</set>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
                    </widget>
                   </item>
                  </layout>

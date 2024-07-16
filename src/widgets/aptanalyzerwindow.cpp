@@ -537,6 +537,12 @@ void AptAnalyzerWindow::apt_repo_load_packages(QString distribution, QString cod
 
         ui->apt_loading_progress->setValue(100);
     }
+
+    if (head_package_gz.status() == 404 && head_package.status() == 404)
+    {
+        ui->apt_loading_progress->setValue(100);
+        ui->stacked_apt_packages->setCurrentWidget(ui->stack_fail);
+    }
 }
 
 /**
