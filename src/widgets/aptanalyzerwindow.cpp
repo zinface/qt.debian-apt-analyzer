@@ -176,6 +176,28 @@ AptAnalyzerWindow::AptAnalyzerWindow(QWidget *parent) :
             item->setSizeHint(item_widget->sizeHint());
             ui->aptDistroList->setItemWidget(item, item_widget);
         }
+        else if (item->text().startsWith("Microsoft"))
+        {
+            SelectionItem *item_widget = new SelectionItem;
+            if (item->text().contains("VSCode")) {
+                item_widget->setIcon(":/vscode.png");
+            } else if (item->text().contains("Edge")) {
+                item_widget->setIcon(":/edge.png");
+            }
+            item_widget->setText(item->text());
+            item->setText("");
+            item->setSizeHint(item_widget->sizeHint());
+            ui->aptDistroList->setItemWidget(item, item_widget);
+        }
+        else if (item->text().startsWith("ROS"))
+        {
+            SelectionItem *item_widget = new SelectionItem;
+            item_widget->setIcon(":/ros.png");
+            item_widget->setText(item->text());
+            item->setText("");
+            item->setSizeHint(item_widget->sizeHint());
+            ui->aptDistroList->setItemWidget(item, item_widget);
+        }
         else
         {
             SelectionItem *item_widget = new SelectionItem;

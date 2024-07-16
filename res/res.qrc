@@ -12,5 +12,8 @@
         <file>ubuntukylin.png</file>
         <file>linux.png</file>
         <file>termux.png</file>
+        <file>vscode.png</file>
+        <file>edge.png</file>
+        <file>ros.png</file>
     </qresource>
 </RCC>
