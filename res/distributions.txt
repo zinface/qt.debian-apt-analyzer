@@ -109,6 +109,7 @@ loongnix-server/8.3            :http://pkg.loongnix.cn/loongnix-server
 loongnix-server/8.4            :http://pkg.loongnix.cn/loongnix-server
 
 # Kylin 规则
+#
 kylin/10.0                                       :https://archive.kylinos.cn/kylin/KYLIN-ALL
 kylin/10.0-2101-KCM                              :https://archive.kylinos.cn/kylin/KYLIN-ALL
 kylin/10.0-210507-yun-SZSW                       :https://archive.kylinos.cn/kylin/KYLIN-ALL
@@ -332,6 +333,12 @@ kylin/V10-GFB-020-updates                        :https://archive.kylinos.cn/kyl
 kylin/V10-GFB-2207                               :https://archive.kylinos.cn/kylin/KYLIN-ALL
 kylin/developer-kits                             :https://archive.kylinos.cn/kylin/KYLIN-ALL
 
+# Termux 规则
+#
+termux-main/stable:https://mirrors.tuna.tsinghua.edu.cn/termux/apt/termux-main
+
+# Ubuntu 规则
+# 
 ubuntu/bionic
 ubuntu/bionic-backports
 ubuntu/bionic-proposed
