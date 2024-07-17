@@ -54,7 +54,7 @@ deepin/beige:deepin/beige
 
 # Lingmo OS 规则
 #
-lingmo/polaris:https://packages-lingmo.simplelinux.cn.eu.org/polaris
+lingmo/polaris:https://packages-lingmo.simplelinux.cn.eu.org/lingmo-archive/rolling/polaris
 
 
 # UOS 规则
